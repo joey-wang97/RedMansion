@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- import iview -->
+    <link rel="stylesheet" href="http://unpkg.com/iview/dist/styles/iview.css">
+    <script src="http://unpkg.com/iview/dist/iview.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="top">
+            <div class="top-img"></div>
+            <ul class="nav">
+                <li v-for="nav in navs">
+                    <a :href="nav.link" class="nav-item">{{nav.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <carousel autoplay v-model="bannerIndex" loop>
+            <carousel-item v-for="bannerImg in bannerImgs">
+                <div style="max-height:350px">
+                    <img :src="bannerImg" class="banner" />
+                </div>
+            </carousel-item>
+        </carousel>
+        <div class="section-header">
+            <p class="section-title">医药</p>
+        </div>
+        <div class="section">
+            <div style="width:50%; text-align: center; border-right: 1px ">
+                <carousel autoplay v-model="samllBannerIndex" loop radius-dot arrow="always">
+                    <carousel-item v-for="bannerImg in bannerImgs" >
+                        <img :src="bannerImg" class="small-banner" />
+                    </carousel-item>
+                </carousel>
+            </div>
+            <div style="width:50%; padding-left: 20px;">
+                <div v-for="i in medicineTitles" class="title1-div">
+                    <a class="title1" :href="i.title">{{i.title}}</a>
+                    <span class="title1-time">{{i.time}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="section-header">
+            <p class="section-title">风俗节庆</p>
+        </div>
+        <div class="section">
+            <div style="width:50%; border-right: 1px solid #986C33 ">
+                <h3 class="title2">这是标题</h3>
+                <div v-for="i in arr" class="title2-div">
+                    <a class="title1" :href="i.title">{{i.title}}</a>
+                    <span class="title1-time">{{i.time}}</span>
+                </div>
+            </div>
+            <div style="width:50%; padding-left: 20px;">
+                <h3 class="title2">这是标题</h3>
+                <div v-for="i in arr" class="title1-div">
+                    <a class="title1" :href="i.title">{{i.title}}</a>
+                    <span class="title1-time">{{i.time}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="section-header">
+            <p class="section-title">风俗节庆</p>
+        </div>
+        <div class="section">
+            <div>
+                <a href="member-detail.html"><img class="img1" src="img/5.jpg"></a>
+                <a href="member-detail.html"><img class="img1" src="img/5.jpg"></a>
+                <a href="member-detail.html"><img class="img1" src="img/5.jpg"></a>
+                <a href="member-detail.html"><img class="img1" src="img/5.jpg"></a>
+            </div>
+        </div>
+        <div class="footer">
+            <h5>红楼社区</h5>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                bannerIndex: 0,
+                samllBannerIndex: 0,
+                navs: [{
+                    name: '家谱',
+                    link: 'content.html'
+                }, {
+                    name: '饮食',
+                    link: 'content.html'
+                }, {
+                    name: '医药',
+                    link: 'content.html'
+                }, {
+                    name: '服饰/美妆',
+                    link: 'content.html'
+                }, {
+                    name: '首饰/物件',
+                    link: 'content.html'
+                }, {
+                    name: '家具设计',
+                    link: 'content.html'
+                }, {
+                    name: '风俗节庆',
+                    link: 'content.html'
+                }],
+                bannerImgs: ['img/bg1.jpg', 'img/bg2.jpeg'],
+                arr: [{
+                        title: 'test',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                ],
+                medicineTitles: [
+                {
+                        title: 'test',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                ]
+            },
+            methods: {
+
+            }
+        })
+    </script>
+    </script>
+</body>
+
+</html>
