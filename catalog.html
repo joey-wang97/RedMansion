@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>目录</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- import iview -->
+    <link rel="stylesheet" href="http://unpkg.com/iview/dist/styles/iview.css">
+    <script src="http://unpkg.com/iview/dist/iview.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="top">
+            <div class="top-img"></div>
+            <ul class="nav">
+                <li v-for="nav in navs">
+                    <a :href="nav.link" class="nav-item">{{nav.name}}</a>
+                </li>
+            </ul>
+        </div>
+        
+        
+        <div class="footer">
+            <h5>红楼社区</h5>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                bannerIndex: 0,
+                samllBannerIndex: 0,
+                navs: [{
+                    name: '家谱',
+                    link: 'content.html'
+                }, {
+                    name: '饮食',
+                    link: 'content.html'
+                }, {
+                    name: '医药',
+                    link: 'content.html'
+                }, {
+                    name: '服饰/美妆',
+                    link: 'content.html'
+                }, {
+                    name: '首饰/物件',
+                    link: 'content.html'
+                }, {
+                    name: '家具设计',
+                    link: 'content.html'
+                }, {
+                    name: '风俗节庆',
+                    link: 'content.html'
+                }],
+                bannerImgs: ['img/bg1.jpg', 'img/bg2.jpeg'],
+                arr: [{
+                        title: 'test',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                ],
+                
+                medicineTitles: [
+                {
+                        title: 'test',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                ]
+            },
+            methods: {
+
+            }
+        })
+    </script>
+    </script>
+</body>
+
+</html>

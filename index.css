@@ -117,13 +117,14 @@
 .content-bg {
     background: url(img/sy-bg.jpg) no-repeat center;
     margin: 0 auto;
+    padding-bottom: 30px;
 }
 
 .content-title {
     font-size: 30px;
     color: #000;
     text-align: center;
-    padding: 20px 0 60px 0;
+    padding: 20px 0 40px 0;
 }
 
 .content-body {
@@ -131,6 +132,14 @@
     color: #4c4c4c;
     text-indent: 40px;
     line-height: 30px;
+}
+
+.content-body-bold {
+    font-size: 18px;
+    color: #4c4c4c;
+    text-indent: 40px;
+    line-height: 30px;
+    font-weight: bold;
 }
 
 .content-div {
