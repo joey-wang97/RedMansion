@@ -9,18 +9,13 @@
     <!-- import iview -->
     <link rel="stylesheet" href="http://unpkg.com/iview/dist/styles/iview.css">
     <script src="http://unpkg.com/iview/dist/iview.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="component.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <div class="top">
-            <div class="top-img"></div>
-            <ul class="nav">
-                <li class="nav-item" v-for="nav in navs">
-                    {{nav.name}}
-                </li>
-            </ul>
-        </div>
+        <m-header></m-header>
         <div class="content-bg">
             <div class="content-div">
                 <h2 class="content-title">{{title}}</h2>
@@ -33,6 +28,26 @@
                 </div>
             </div>
         </div>
+        <div class="section-header" style="margin-top:30px">
+            <p class="section-title">评论专区</p>
+        </div>
+        <div style="display: flex; align-items:center; justify-content:center; ">
+            <div>
+                <i-input style="width:800px;" v-model="comment" type="textarea" placeholder="请输入您的评论" />
+            </div>
+            <div>
+                <button style="width:100px; height:30px;margin-left: 50px">发布</button>
+            </div>
+        </div>
+        <div style="max-width: 80%;border-top: 1px #704D33 solid; margin: 20px auto">
+            <div v-for="i in comments">
+                <div style="padding: 0 10px;">
+                    <!-- <span>{{i.nickname}}</span> -->
+                    <span>{{i.time}}</span>
+                </div>
+                <p class="content-body">{{i.text}}</p>
+            </div>
+        </div>
         <div class="footer">
             <h5>红楼社区</h5>
         </div>
@@ -41,29 +56,7 @@
         new Vue({
             el: '#app',
             data: {
-                // 顶部导航栏名称与链接
-                navs: [{
-                    name: '家谱',
-                    link: 'content.html'
-                }, {
-                    name: '医药',
-                    link: 'content.html'
-                }, {
-                    name: '饮食',
-                    link: 'content.html'
-                }, {
-                    name: '服饰/美妆',
-                    link: 'content.html'
-                }, {
-                    name: '首饰/物件',
-                    link: 'content.html'
-                }, {
-                    name: '家具设计',
-                    link: 'content.html'
-                }, {
-                    name: '风俗节庆',
-                    link: 'content.html'
-                }],
+                comment: '',
                 // 标题
                 title: '端午',
                 // 每一个花括号括起来是一个段落
@@ -107,7 +100,7 @@
                     text: "书中端午当天王夫人治了酒席，请薛家母女等赏午。赏午，就是庆赏端午，怎么庆呢，自然是边吃边庆。清朝时期的《燕京岁时记·端阳》中就有记载：“每届端阳以前，府第朱门皆以粽子相馈饴，并副以樱桃、桑椹、荸荠、桃、杏及五毒饼、玫瑰饼等物。”看到了吧，除了粽子，家宴上要有这么多东西。还应该喝点雄黄酒， 就是白娘娘喝了一秒钟显出原形的那酒，据说是喝一点辟邪避暑。"
 
                 }, {
-                    img:"img/duanwu/dw6.png",
+                    img: "img/duanwu/dw6.png",
                 }, {
                     text: "「端午斗百草 放假赏花好玩耍」",
                     bold: true
@@ -115,12 +108,38 @@
                     text: "斗草分为武斗和文斗两种。武斗就是每人找一根草， 然后角力看看谁的草坚韧。文斗就是大家报花草名，看谁对得上。红楼梦里写的是文斗。"
                 }, {
                     text: "午间宴席散后，香菱和小螺、芳官、蕊官、藕官、荳官等四五个小丫头，采了花草坐在草地上斗草。观音柳对罗汉松，君子竹对美人蕉，星星翠对月月红；《牡丹亭》上的牡丹花对《琵琶记》里的枇杷果。这几个小丫头有些是贾府里家养的小戏子，所以对戏文格外熟悉。从这也可见曹公写作功底深厚，每个人物的背景和她的言语行动都极其相符。 用如今流行的说法是“人设到位”。"
-                },{
+                }, {
                     img: "img/duanwu/dw7.png",
-                }, ]
+                }],
+                comments: [{
+                    text: 'hhhh',
+                    time: '2018-09-30 19:30:13',
+                    nickname: '天宇小凡'
+                }],
+                baseUrl:'http://service-bz01dpyd-1252411630.ap-beijing.apigateway.myqcloud.com/test/listComment'
             },
             methods: {
-
+                publishComment() {
+                    $.ajax({
+                        url:this.baseUrl,
+                        data: {
+                            text:this.comment,
+                            time: Date.now().toString()
+                        },
+                        type:'post',
+                        success:function(msg) {
+                            console.log(msg);
+                        }
+                    })
+                },
+                listComment() {
+                    $.get(this.baseUrl, function(msg) {
+                        console.log(msg);
+                    })
+                }
+            },
+            created() {
+                this.listComment();
             }
         })
     </script>

@@ -117,7 +117,7 @@
 .content-bg {
     background: url(img/sy-bg.jpg) no-repeat center;
     margin: 0 auto;
-    padding-bottom: 30px;
+    /* padding-bottom: 30px; */
 }
 
 .content-title {

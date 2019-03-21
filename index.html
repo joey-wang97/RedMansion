@@ -5,22 +5,19 @@
     <meta charset="UTF-8">
     <title>首页</title>
     <link rel="stylesheet" type="text/css" href="index.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <!-- import iview -->
     <link rel="stylesheet" href="http://unpkg.com/iview/dist/styles/iview.css">
     <script src="http://unpkg.com/iview/dist/iview.min.js"></script>
+    <script src="component.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="expander.min.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <div class="top">
-            <div class="top-img"></div>
-            <ul class="nav">
-                <li v-for="nav in navs">
-                    <a :href="nav.link" class="nav-item">{{nav.name}}</a>
-                </li>
-            </ul>
-        </div>
+        <m-header></m-header>
         <carousel autoplay v-model="bannerIndex" loop>
             <carousel-item v-for="bannerImg in bannerImgs">
                 <div style="max-height:350px">
@@ -28,7 +25,7 @@
                 </div>
             </carousel-item>
         </carousel>
-        
+
         <div class="section-header">
             <p class="section-title">医 药</p>
         </div>
@@ -65,7 +62,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="section-header">
             <p class="section-title">服饰与物件</p>
         </div>
@@ -91,10 +88,10 @@
         </div>
         <div class="section">
             <div>
-                <a href="member-detail.html"><img class="img1" src="img/5.jpg"></a>
-                <a href="member-detail.html"><img class="img1" src="img/5.jpg"></a>
-                <a href="member-detail.html"><img class="img1" src="img/5.jpg"></a>
-                <a href="member-detail.html"><img class="img1" src="img/5.jpg"></a>
+                <a href="#"><img class="img1" data-expander='{animation:"fade"}' src="img/5.jpg"></a>
+                <a href="#"><img class="img1" data-expander='{animation:"fade"}' src="img/5.jpg"></a>
+                <a href="#"><img class="img1" data-expander='{animation:"fade"}' src="img/5.jpg"></a>
+                <a href="#"><img class="img1" data-expander='{animation:"fade"}' src="img/5.jpg"></a>
             </div>
         </div>
         <div class="footer">
@@ -106,184 +103,172 @@
             el: '#app',
             data: {
                 bannerIndex: 0,
-                medicineBannerIndex: 0,
                 // 顶部的图片切换
                 bannerImgs: ['img/bg1.jpg', 'img/bg2.jpeg'],
-                // 顶部导航栏名称与链接
-                navs: [{
-                    name: '家谱',
-                    link: 'content.html'
-                }, {
-                    name: '医药',
-                    link: 'content.html'
-                }, {
-                    name: '饮食',
-                    link: 'content.html'
-                }, {
-                    name: '服饰/美妆',
-                    link: 'content.html'
-                }, {
-                    name: '首饰/物件',
-                    link: 'content.html'
-                }, {
-                    name: '家具设计',
-                    link: 'content.html'
-                }, {
-                    name: '风俗节庆',
-                    link: 'content.html'
-                }],
+                medicineBannerIndex: 0,
                 // 饮食二级标题
                 dietTitles: [{
-                    title: 'test',
-                    time: '19-3-3',
-                    img:'img/bg1.jpg'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3',
-                    img:'img/bg2.jpg'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3',
-                    img:'img/5.jpg',
-                },
-                {
-                    title: 'test2',
-                    img:'img/6.jpg',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    img:'img/7.jpg',
-                    time: '19-3-3'
-                },
+                        title: 'test',
+                        time: '19-3-3',
+                        img: 'img/bg1.jpg'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3',
+                        img: 'img/bg2.jpg'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3',
+                        img: 'img/5.jpg',
+                    },
+                    {
+                        title: 'test2',
+                        img: 'img/6.jpg',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        img: 'img/7.jpg',
+                        time: '19-3-3'
+                    },
                 ],
                 // 服饰二级标题
                 clothTitles: [{
-                    title: 'test',
-                    img: '',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    img: '',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    img: '',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    img: '',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    img: '',
-                    time: '19-3-3'
-                },
+                        title: 'test',
+                        img: '',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        img: '',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        img: '',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        img: '',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        img: '',
+                        time: '19-3-3'
+                    },
                 ],
                 // 首饰二级标题
                 jewelryTitles: [{
-                    title: 'test',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3'
-                },
+                        title: 'test',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
                 ],
                 // 家具二级标题
                 funitureTitles: [{
-                    title: 'test',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3'
-                },
+                        title: 'test',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
                 ],
                 // 医药二级标题
                 medicineTitles: [{
-                    title: 'test',
-                    img:'img/bg1.jpg',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    img:'img/bg1.jpg',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    img:'img/bg2.jpeg',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    img:'img/bg1.jpg',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    img:'img/bg2.jpeg',
-                    time: '19-3-3'
-                },
+                        title: 'test',
+                        img: 'img/bg1.jpg',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        img: 'img/bg1.jpg',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        img: 'img/bg2.jpeg',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        img: 'img/bg1.jpg',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        img: 'img/bg2.jpeg',
+                        time: '19-3-3'
+                    },
                 ],
                 // 风俗节庆二级标题
                 festivalTitles: [{
-                    title: 'test',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3'
-                }]
+                        title: 'test',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    },
+                    {
+                        title: 'test2',
+                        time: '19-3-3'
+                    }
+                ]
             },
             methods: {
 
             }
-        })
-    </script>
+        });
+        $(function () {
+            //导航
+            $(".com-nav-list").mouseenter(function () {
+                $(this).children(".com-sub-box").stop(false, true).slideDown();
+            }).mouseleave(function () {
+                $(this).children(".com-sub-box").stop(false, true).slideUp();
+            });
+            $(".com-nav-list").click(function () {
+                $(this).addClass("current-nav").siblings().removeClass("current-nav");
+            });
+        });
     </script>
 </body>
 
