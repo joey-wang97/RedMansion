@@ -26,7 +26,7 @@
             </carousel-item>
         </carousel>
 
-        <div class="section-header">
+        <div class="section-header" id="medicine">
             <p class="section-title">医 药</p>
         </div>
         <div class="section">
@@ -39,51 +39,70 @@
             </div>
             <div style="width:50%; padding-left: 20px;">
                 <div v-for="i in medicineTitles" class="title1-div">
-                    <a class="title1" :href="i.title">{{i.title}}</a>
+                    <a class="title1" :href="i.link">{{i.title}}</a>
                     <span class="title1-time">{{i.time}}</span>
                 </div>
             </div>
         </div>
 
-        <div class="section-header">
+        <div class="section-header" id="diet">
             <p class="section-title">饮食</p>
         </div>
         <div class="section">
             <div style="width:50%; border-right: 1px solid #986C33 ">
                 <div v-for="i in dietTitles.slice(0,dietTitles.length/2)" class="title2-div">
-                    <a class="title1" :href="i.title">{{i.title}}</a>
+                    <a class="title1" :href="i.link">{{i.title}}</a>
                     <span class="title1-time">{{i.time}}</span>
                 </div>
             </div>
             <div style="width:50%; padding-left: 20px;">
                 <div v-for="i in dietTitles.slice(dietTitles.length/2)" class="title1-div">
-                    <a class="title1" :href="i.title">{{i.title}}</a>
+                    <a class="title1" :href="i.link">{{i.title}}</a>
                     <span class="title1-time">{{i.time}}</span>
                 </div>
             </div>
         </div>
 
-        <div class="section-header">
+        <div class="section-header" id="funiture">
+            <p class="section-title">家具设计</p>
+        </div>
+        <div class="section">
+            <div style="width:50%; padding-left: 20px;">
+                <div v-for="i in funitureTitles" class="title1-div">
+                    <a class="title1" :href="i.link">{{i.title}}</a>
+                    <span class="title1-time">{{i.time}}</span>
+                </div>
+            </div>
+            <div style="width:50%; text-align: center; border-left: 1px ">
+                <carousel autoplay v-model="funitureBannerIndex" loop radius-dot arrow="always">
+                    <carousel-item v-for="i in funitureTitles">
+                        <img :src="i.img" class="small-banner" />
+                    </carousel-item>
+                </carousel>
+            </div>
+        </div>
+
+        <div class="section-header" id="cloth">
             <p class="section-title">服饰与物件</p>
         </div>
         <div class="section">
             <div style="width:50%; border-right: 1px solid #986C33 ">
                 <h3 class="title2">服饰/美妆</h3>
                 <div v-for="i in clothTitles" class="title2-div">
-                    <a class="title1" :href="i.title">{{i.title}}</a>
+                    <a class="title1" :href="i.link">{{i.title}}</a>
                     <span class="title1-time">{{i.time}}</span>
                 </div>
             </div>
             <div style="width:50%; padding-left: 20px;">
                 <h3 class="title2">首饰物件</h3>
                 <div v-for="i in jewelryTitles" class="title1-div">
-                    <a class="title1" :href="i.title">{{i.title}}</a>
+                    <a class="title1" :href="i.link">{{i.title}}</a>
                     <span class="title1-time">{{i.time}}</span>
                 </div>
             </div>
         </div>
 
-        <div class="section-header">
+        <div class="section-header" id="festival">
             <p class="section-title">风俗节庆</p>
         </div>
         <div class="section">
@@ -108,29 +127,35 @@
                 // 顶部的图片切换
                 bannerImgs: ['img/bg1.jpg', 'img/bg2.jpeg'],
                 medicineBannerIndex: 0,
+                funitureBannerIndex: 0,
                 // 饮食二级标题
                 dietTitles: [{
                     title: 'test',
+                    link:'#',
                     time: '19-3-3',
                     img: 'img/bg1.jpg'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     time: '19-3-3',
                     img: 'img/bg2.jpg'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     time: '19-3-3',
                     img: 'img/5.jpg',
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     img: 'img/6.jpg',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     img: 'img/7.jpg',
                     time: '19-3-3'
                 },
@@ -138,26 +163,31 @@
                 // 服饰二级标题
                 clothTitles: [{
                     title: 'test',
+                    link:'#',
                     img: '',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     img: '',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     img: '',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     img: '',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     img: '',
                     time: '19-3-3'
                 },
@@ -165,70 +195,90 @@
                 // 首饰二级标题
                 jewelryTitles: [{
                     title: 'test',
+                    link:'#',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     time: '19-3-3'
                 },
                 ],
                 // 家具二级标题
                 funitureTitles: [{
                     title: 'test',
+                    link:'#',
+                    time: '19-3-3',
+                    img: 'img/bg1.jpg',
+                },
+                {
+                    title: 'test2',
+                    link:'#',
+                    time: '19-3-3',
+                    img: 'img/bg2.jpeg',
+                },
+                {
+                    title: 'test2',
+                    link:'#',
+                    img: 'img/bg1.jpg',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
+                    link:'#',
+                    img: 'img/bg2.jpeg',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
-                    time: '19-3-3'
-                },
-                {
-                    title: 'test2',
+                    link:'#',
+                    img: 'img/bg1.jpg',
                     time: '19-3-3'
                 },
                 ],
                 // 医药二级标题
                 medicineTitles: [{
                     title: 'test',
+                    link:'#',
                     img: 'img/bg1.jpg',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     img: 'img/bg1.jpg',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     img: 'img/bg2.jpeg',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     img: 'img/bg1.jpg',
                     time: '19-3-3'
                 },
                 {
                     title: 'test2',
+                    link:'#',
                     img: 'img/bg2.jpeg',
                     time: '19-3-3'
                 },

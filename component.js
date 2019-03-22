@@ -3,26 +3,29 @@ Vue.component('m-header', {
         return {
             // 顶部导航栏名称与链接
             navs: [{
+                name: '首页',
+                link: 'index.html'
+            }, {
                 name: '家谱',
                 link: 'content.html'
             }, {
                 name: '医药',
-                link: 'content.html'
+                link: 'index.html#medicine'
             }, {
                 name: '饮食',
-                link: 'content.html'
+                link: 'index.html#diet'
             }, {
                 name: '服饰/美妆',
-                link: 'content.html'
+                link: 'index.html#cloth'
             }, {
                 name: '首饰/物件',
-                link: 'content.html'
+                link: 'index.html#cloth'
             }, {
                 name: '家具设计',
-                link: 'content.html'
+                link: 'index.html#funiture'
             }, {
                 name: '风俗节庆',
-                link: 'content.html'
+                link: 'index.html#festival'
             }],
         }
     },
