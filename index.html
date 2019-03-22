@@ -18,7 +18,7 @@
 <body>
     <div id="app">
         <m-header></m-header>
-        <carousel autoplay v-model="bannerIndex" loop>
+        <carousel autoplay v-model="bannerIndex" loop autoplay-speed="2850">
             <carousel-item v-for="bannerImg in bannerImgs">
                 <div style="max-height:350px">
                     <img :src="bannerImg" class="banner" />
@@ -87,11 +87,13 @@
             <p class="section-title">风俗节庆</p>
         </div>
         <div class="section">
-            <div>
-                <a href="#"><img class="img1" data-expander='{animation:"fade"}' src="img/5.jpg"></a>
-                <a href="#"><img class="img1" data-expander='{animation:"fade"}' src="img/5.jpg"></a>
-                <a href="#"><img class="img1" data-expander='{animation:"fade"}' src="img/5.jpg"></a>
-                <a href="#"><img class="img1" data-expander='{animation:"fade"}' src="img/5.jpg"></a>
+            <div style="display: flex">
+                <div v-for="i in festivalTitles" style="text-align:center">
+                    <div>
+                        <img class="img1" data-expander='{animation:"fade"}' :src="i.img">
+                    </div>
+                    <a class="festivalLink" :href="i.link">{{i.title}}</a>
+                </div>
             </div>
         </div>
         <div class="footer">
@@ -108,150 +110,160 @@
                 medicineBannerIndex: 0,
                 // 饮食二级标题
                 dietTitles: [{
-                        title: 'test',
-                        time: '19-3-3',
-                        img: 'img/bg1.jpg'
-                    },
-                    {
-                        title: 'test2',
-                        time: '19-3-3',
-                        img: 'img/bg2.jpg'
-                    },
-                    {
-                        title: 'test2',
-                        time: '19-3-3',
-                        img: 'img/5.jpg',
-                    },
-                    {
-                        title: 'test2',
-                        img: 'img/6.jpg',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        img: 'img/7.jpg',
-                        time: '19-3-3'
-                    },
+                    title: 'test',
+                    time: '19-3-3',
+                    img: 'img/bg1.jpg'
+                },
+                {
+                    title: 'test2',
+                    time: '19-3-3',
+                    img: 'img/bg2.jpg'
+                },
+                {
+                    title: 'test2',
+                    time: '19-3-3',
+                    img: 'img/5.jpg',
+                },
+                {
+                    title: 'test2',
+                    img: 'img/6.jpg',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    img: 'img/7.jpg',
+                    time: '19-3-3'
+                },
                 ],
                 // 服饰二级标题
                 clothTitles: [{
-                        title: 'test',
-                        img: '',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        img: '',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        img: '',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        img: '',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        img: '',
-                        time: '19-3-3'
-                    },
+                    title: 'test',
+                    img: '',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    img: '',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    img: '',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    img: '',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    img: '',
+                    time: '19-3-3'
+                },
                 ],
                 // 首饰二级标题
                 jewelryTitles: [{
-                        title: 'test',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        time: '19-3-3'
-                    },
+                    title: 'test',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    time: '19-3-3'
+                },
                 ],
                 // 家具二级标题
                 funitureTitles: [{
-                        title: 'test',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        time: '19-3-3'
-                    },
+                    title: 'test',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    time: '19-3-3'
+                },
                 ],
                 // 医药二级标题
                 medicineTitles: [{
-                        title: 'test',
-                        img: 'img/bg1.jpg',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        img: 'img/bg1.jpg',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        img: 'img/bg2.jpeg',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        img: 'img/bg1.jpg',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        img: 'img/bg2.jpeg',
-                        time: '19-3-3'
-                    },
+                    title: 'test',
+                    img: 'img/bg1.jpg',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    img: 'img/bg1.jpg',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    img: 'img/bg2.jpeg',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    img: 'img/bg1.jpg',
+                    time: '19-3-3'
+                },
+                {
+                    title: 'test2',
+                    img: 'img/bg2.jpeg',
+                    time: '19-3-3'
+                },
                 ],
                 // 风俗节庆二级标题
                 festivalTitles: [{
-                        title: 'test',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        time: '19-3-3'
-                    },
-                    {
-                        title: 'test2',
-                        time: '19-3-3'
-                    }
+                    title: 'test',
+                    time: '19-3-3',
+                    img: 'img/5.jpg',
+                    link: 'content.html'
+                },
+                {
+                    title: 'test2',
+                    time: '19-3-3',
+                    link: 'content.html',
+                    img: 'img/6.jpg'
+                },
+                {
+                    title: 'test2',
+                    time: '19-3-3',
+                    link: 'content.html',
+                    img: 'img/7.jpg'
+                },
+                {
+                    title: 'test2',
+                    time: '19-3-3',
+                    link: 'content.html',
+                    img: 'img/5.jpg'
+                },
+                {
+                    title: 'test2',
+                    time: '19-3-3',
+                    link: 'content.html',
+                    img: 'img/6.jpg'
+                }
                 ]
             },
             methods: {

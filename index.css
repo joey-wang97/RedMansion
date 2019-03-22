@@ -146,3 +146,17 @@
     max-width: 1080px;
     margin: 0 auto;
 }
+
+.festivalLink {
+    font-size: 16px;
+    line-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #986C33;
+}
+
+.festivalLink:hover {
+    color: #333;
+    text-decoration-line: underline
+}
