@@ -9,7 +9,7 @@
     <!-- import iview -->
     <link rel="stylesheet" href="http://unpkg.com/iview/dist/styles/iview.css">
     <script src="http://unpkg.com/iview/dist/iview.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="jquery3.3.1.min.js"></script>
     <script src="component.js"></script>
 </head>
 
@@ -36,11 +36,12 @@
                 <i-input style="width:800px;" v-model="comment" type="textarea" placeholder="请输入您的评论" />
             </div>
             <div>
-                <button style="width:100px; height:30px;margin-left: 50px">发布</button>
+                <button style="width:100px; height:30px;margin-left: 50px" @click="publishComment"
+                    :disabled="comment.trim().length <= 0">发布</button>
             </div>
         </div>
-        <div style="max-width: 80%;border-top: 1px #704D33 solid; margin: 20px auto">
-            <div v-for="i in comments">
+        <div style="max-width: 80%;margin: 20px auto">
+            <div v-for="i in comments" style="border-top: 1px #704D33 solid; padding: 20px;">
                 <div style="padding: 0 10px;">
                     <!-- <span>{{i.nickname}}</span> -->
                     <span>{{i.time}}</span>
@@ -111,37 +112,46 @@
                 }, {
                     img: "img/duanwu/dw7.png",
                 }],
-                comments: [{
-                    text: 'hhhh',
-                    time: '2018-09-30 19:30:13',
-                    nickname: '天宇小凡'
-                }],
-                baseUrl:'http://service-bz01dpyd-1252411630.ap-beijing.apigateway.myqcloud.com/test/listComment'
+                comments: [],
+                baseUrl: 'https://service-08a66ddb-1252411630.ap-beijing.apigateway.myqcloud.com/test/red-mansion-comment'
             },
             methods: {
                 publishComment() {
+                    var vm = this;
+                    var data = "text=" + this.comment + "&" + "time=" + new Date().toLocaleString();
+                    console.log(this.baseUrl + "?" + data);
                     $.ajax({
-                        url:this.baseUrl,
-                        data: {
-                            text:this.comment,
-                            time: Date.now().toString()
-                        },
-                        type:'post',
-                        success:function(msg) {
+                        url: this.baseUrl + "?" + data,
+                        type: 'GET',
+                        success: function (msg) {
+                            msg = JSON.parse(msg);
+                            alert('发布成功');
                             console.log(msg);
+                            vm.comments = msg;
                         }
                     })
                 },
                 listComment() {
-                    $.get(this.baseUrl, function(msg) {
-                        console.log(msg);
+                    var vm = this;
+                    $.ajax({
+                        url: this.baseUrl,
+                        success: function (msg) {
+                            msg = JSON.parse(msg);
+                            console.log('listFinish', msg);
+                            vm.comments = msg;
+                        },
+                        error: function (xhr, status, error) {
+                            alert('error' + status);
+                            console.log(xhr, status, error);
+                        }
                     })
                 }
             },
-            created() {
+            mounted() {
                 this.listComment();
             }
         })
+        // console.log(jQuery);
     </script>
     </script>
 </body>
