@@ -26,6 +26,9 @@ Vue.component('m-header', {
             }, {
                 name: '风俗节庆',
                 link: 'index.html#festival'
+            }, {
+                name: '红楼梦园区',
+                link: 'map.html'
             }],
         }
     },

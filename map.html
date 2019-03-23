@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>内容页</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- import iview -->
+    <link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css">
+    <script src="https://unpkg.com/iview/dist/iview.min.js"></script>
+    <script src="jquery3.3.1.min.js"></script>
+    <script src="component.js"></script>
+    <style>
+        .map-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <m-header></m-header>
+        <div style="margin-top:20px">
+            <div class="map-div">
+                <img src="img/map/img1.png" @click="show(3)" />
+                <img src="img/map/img2.png" @click="show(4)" />
+                <img src="img/map/img3.png" />
+            </div>
+            <div class="map-div">
+                <img src="img/map/img4.png" @click="show(2)" />
+                <img src="img/map/img5.png" @click="show(1)" />
+            </div>
+        </div>
+        <Modal v-model="modal" title="">
+            <img :src="cur.img" height="300px"/>
+            <p style="font-size: 13px;color: #4c4c4c;text-indent: 20px;line-height: 30px;" v-for="i in cur.content">{{i}}</p>
+        </Modal>
+        <div class="footer">
+            <h5>红楼社区</h5>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                modal: false,
+                cur: {},
+                arr: [{
+                    img: 'img/map-head/head1.png',
+                    content: [
+                        '好姐姐，让我吃吃你嘴上的胭脂可好？女儿是水作的骨肉，男人是泥作的骨肉，我见了女儿便清爽，见了男子便觉浊臭逼人。',
+                        '我这正房上悬着一块匾额，写的是“怡红快绿”四个大字，因而这院子就叫了怡红院。那日晴雯生气，坐在这怡红院中撕扇子。要我说，这些东西原不过是供人所用，你爱这样，我爱那样，各人性情不同。这扇子原是扇的，你要是撕着玩自然也使得~',
+                        '过了这个云洞门，是大片的桃花林，过林可通往园中各处。向西顺着芙蓉堤走，就能看着一片翠竹林，那是林妹妹的潇湘馆。你若是喜欢诗，何不与我们海棠社的“潇湘妃子”切磋切磋~'
+                    ]
+                }, {
+                    img: 'img/map-head/head2.png',
+                    content: [
+                        '姑娘、爷们，我们林姑娘刚吃完药，这会子刚睡下。我来给你们介绍介绍这潇湘馆~',
+                        '你们一进门就可以看到两边翠竹夹路，土地下苍苔布满，中间羊肠一条石子漫的路，当时刘姥姥不肯走石子路，不小心滑了一跤，你们可得仔细点，可别扭了腰~屋内的书架上累着满满的书，姑娘们翻看的时候，可得爱惜这点，我们林姑娘平时对这些宝贵着呢！',
+                        '姑娘和爷们可以往北边宝姐姐房里坐坐。从宝姐姐的蘅芜苑穿过凸碧山庄就能到林姑娘和宝二爷共读西厢，葬花的地方了~'
+                    ]
+                }, {
+                    img: 'img/map-head/head3.png',
+                    content: [
+                        '各位哥儿姐儿们，天色将晚，这是打哪儿来？想必是路过林姑娘那了，林姑娘身上可大好了？',
+                        '蘅芜是香草的名字，我这园内蘅芜满园，异香扑鼻。当然，这香可比不上那冷香丸的香，那是个什么稀罕物件~',
+                        '我这儿就离大观园里建筑规模最大，等级最高的省亲别墅不远了，向南走通过那云步石梯就到了，在那儿的大观楼看戏可是极好的。'
+                    ]
+                }, {
+                    img: 'img/map-head/head4.png',
+                    content: [
+                        '省亲那日，此处可是说不尽的太平气象，富贵风流。那日我和自家姊妹们一起作诗，终是薛、林二妹的《凝晖钟瑞》和《世外仙源》与众不同，非愚姐妹可同列者。作完了诗，就到那大观园里看了四出戏，你们如果能体会一下，那自是极好的~'
+                    ]
+                }, ]
+            },
+            methods: {
+                show(index) {
+                    this.cur = this.arr[index-1];
+                    this.modal = true;
+                }
+            },
+            mounted() {}
+        })
+    </script>
+</body>
+
+</html>
