@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>内容页</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- import iview -->
+    <link rel="stylesheet" href="https://unpkg.com/iview/dist/styles/iview.css">
+    <script src="https://unpkg.com/iview/dist/iview.min.js"></script>
+    <script src="jquery3.3.1.min.js"></script>
+    <script src="component.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <m-header></m-header>
+        <div class="content-bg">
+            <div class="content-div">
+                <h2 class="content-title">{{title}}</h2>
+                <div v-for="i in contents">
+                    <p v-bind:class="{'content-body':!i.bold,'content-body-bold':i.bold}"
+                        v-show="i.text && i.text.trim().length > 0">
+                        {{i.text}}
+                    </p>
+                    <img style="margin: 20px 0" :src="i.img" v-show="i.img && i.img.trim().length > 0" />
+                </div>
+            </div>
+        </div>
+        <div class="section-header" style="margin-top:30px">
+            <p class="section-title">评论专区</p>
+        </div>
+        <div style="display: flex; align-items:center; justify-content:center; ">
+            <div>
+                <i-input style="width:800px;" v-model="comment" type="textarea" placeholder="请输入您的评论" />
+            </div>
+            <div>
+                <button style="width:100px; height:30px;margin-left: 50px" @click="publishComment"
+                    :disabled="comment.trim().length <= 0">发布</button>
+            </div>
+        </div>
+        <div style="max-width: 80%;margin: 20px auto">
+            <div v-for="i in comments" style="border-top: 1px #704D33 solid; padding: 20px;">
+                <div style="padding: 0 10px;">
+                    <!-- <span>{{i.nickname}}</span> -->
+                    <span>{{i.time}}</span>
+                </div>
+                <p class="content-body">{{i.text}}</p>
+            </div>
+        </div>
+        <div class="footer">
+            <h5>红楼社区</h5>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                comment: '',
+                // 标题
+                title: '生活小妙招',
+                // 每一个花括号括起来是一个段落
+                // 如果不需要加粗就复制text，需要加粗就加上bold，需要图片就用img
+                // text里面的字符串不要换行，不要出现英文双引号，如果有英文双引号可以换成中文引号。
+                contents: [{
+                    text: "酣畅淋漓吃完螃蟹后，如何去除手上的味道？",
+                    bold: true
+                },{
+                    text: "「绿豆面子」",
+                    bold: true
+                }, {
+                    text: "小丫头去取了菊花叶儿桂花蕊熏的绿豆面子来，预备洗手。这种绿豆面子被用来洗手，以去除螃蟹的腥气，绿豆面本身可以去油，而花香可以遮腥气。"
+                }, {
+                    text: "                                                                                                                                                                             ",
+                    bold: true
+                },{
+                    img: "img/shenghuo/ld.png",
+                }, {
+                    text: "饭后如何保持口气清新？",
+                    bold: true
+                },  {
+                    text: "「茶水漱口」",
+                    bold: true
+                },{
+                    text: "贾府吃饭有个习惯：饭后必先用茶水漱口。那个年代没有牙刷、牙膏、牙线什么的，于是饭后用茶水漱漱口，也算个保持口气清新的好习惯。"
+                },{
+                    text: "但看看《红楼梦》电视剧里的情节就不难发现，人家侯门公府的小姐漱口时都是轻轻柔柔地，漱一漱很快就会吐掉。绝不会像包租婆一样，漱个口气吞山河般反反复复，生怕漱口声不够震撼。那小姐们漱口后留在口腔中的茶多酚、儿茶素之类的成分极少，基本起不到所谓杀菌抑菌的作用。不过呢，饭后茶水漱漱口，清理些牙缝中的食物残渣，去除些口腔中的饭菜香，那还是胜过饭后不漱口的。"
+                }, {
+                    text: "所以，你学会了吗？"
+                }, {
+                    text: "",
+                    bold: true
+                }, {
+                    text: "熬夜的必备单品除了咖啡还有什么？",
+                    bold: true
+                }, {
+                    text: "「浓茶」",
+                    bold: true
+                }, {
+                    img: "img/shenghuo/cs.jpg",
+                }, {
+                    text: " 一条关于茶叶的冷知识：茶叶中的咖啡因大概是咖啡中的十几倍，只是因为人类最先是在咖啡中发现这个成分，所以取名叫咖啡因。如果你要加班熬夜，除了咖啡，浓茶效果更佳呦~"
+                }],
+                comments: [],
+                baseUrl: 'https://service-08a66ddb-1252411630.ap-beijing.apigateway.myqcloud.com/test/red-mansion-comment'
+            },
+            methods: {
+                publishComment() {
+                    var vm = this;
+                    var data = "text=" + this.comment + "&" + "time=" + new Date().toLocaleString();
+                    console.log(this.baseUrl + "?" + data);
+                    $.ajax({
+                        url: this.baseUrl + "?" + data,
+                        type: 'GET',
+                        success: function (msg) {
+                            msg = JSON.parse(msg);
+                            alert('发布成功');
+                            console.log(msg);
+                            vm.comments = msg;
+                        }
+                    })
+                },
+                listComment() {
+                    var vm = this;
+                    $.ajax({
+                        url: this.baseUrl,
+                        success: function (msg) {
+                            msg = JSON.parse(msg);
+                            console.log('listFinish', msg);
+                            vm.comments = msg;
+                        },
+                        error: function (xhr, status, error) {
+                            // alert('error' + status);
+                            console.log(xhr, status, error);
+                        }
+                    })
+                }
+            },
+            mounted() {
+                this.listComment();
+            }
+        })
+        // console.log(jQuery);
+    </script>
+    </script>
+</body>
+
+</html>

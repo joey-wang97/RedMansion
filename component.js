@@ -34,12 +34,12 @@ Vue.component('m-header', {
     },
     template: `
     <div class="top">
-            <div class="top-img"></div>
-            <ul class="nav">
-                <li v-for="nav in navs">
-                    <a :href="nav.link" class="nav-item">{{nav.name}}</a>
-                </li>
-            </ul>
-        </div>
+        <div class="top-img"></div>
+        <ul class="nav">
+            <li v-for="nav in navs">
+                <a :href="nav.link" class="nav-item">{{nav.name}}</a>
+            </li>
+        </ul>
+    </div>
     `
 })
